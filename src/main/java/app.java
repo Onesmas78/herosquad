@@ -76,7 +76,7 @@ public class app {
                 }
             }
             assert squadFounder != null;
-            Squad newSquad = new Squad(name, cause, squadFounder);
+            squad newSquad = new squad(name, cause, squadFounder);
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -99,7 +99,7 @@ public class app {
         //display squads list
         get("/squads", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("squad", Squad.getSquadsList());
+            model.put("squad", squad.getSquadsList());
             model.put("uniqueId", request.session().attribute("uniqueId"));
             return new ModelAndView(model, "squadlist.hbs");
         }, new HandlebarsTemplateEngine());
