@@ -10,8 +10,13 @@ repositories {
 }
 
 dependencies {
+    implementation("org.apache.commons:commons-lang3:3.12.0")
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    implementation ("com.sparkjava:spark-core:2.9.3")
+    implementation ("com.sparkjava:spark-template-handlebars:2.7.1")
+    implementation ("com.github.jknack:handlebars:4.3.0")
+    implementation ("org.slf4j:slf4j-simple:1.7.36")
 }
 
 tasks.test {
