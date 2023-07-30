@@ -31,7 +31,7 @@ public class app {
             int age = Integer.parseInt(request.queryParams("heroAge"));
             String power = request.queryParams("heroSpecialPower");
             String weakness = request.queryParams("heroWeakness");
-            Hero newHero = new Hero(name, age, power, weakness);
+            hero newHero = new hero(name, age, power, weakness);
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -45,8 +45,8 @@ public class app {
         //new squad page
         get("/squads/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Hero> squadlessHeroes = new ArrayList<>();
-            for (Hero hero : Hero.getHeroList()) {
+            List<hero> squadlessHeroes = new ArrayList<>();
+            for (hero hero : hero.getHeroList()) {
                 if (hero.getSquadGroup().equals("")) {
                     squadlessHeroes.add(hero);
                 }
@@ -58,8 +58,8 @@ public class app {
         //create a new squad page - redirect to success page
         post("/squads/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Hero> squadlessHeroes = new ArrayList<>();
-            for (Hero hero : Hero.getHeroList()) {
+            List<hero> squadlessHeroes = new ArrayList<>();
+            for (hero hero : hero.getHeroList()) {
                 if (hero.getSquadGroup().equals("")) {
                     squadlessHeroes.add(hero);
                 }
@@ -68,8 +68,8 @@ public class app {
             String name = request.queryParams("squadName");
             String cause = request.queryParams("squadCause");
             String heroName = request.queryParams("founder");
-            Hero squadFounder = null;
-            for (Hero hero : squadlessHeroes) {
+            hero squadFounder = null;
+            for (hero hero : squadlessHeroes) {
                 if (hero.getName().equalsIgnoreCase(heroName)) {
                     squadFounder = hero;
                     break;
@@ -91,7 +91,7 @@ public class app {
         //display heroes list
         get("/heroes", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("hero", Hero.getHeroList());
+            model.put("hero", hero.getHeroList());
             model.put("uniqueId", request.session().attribute("uniqueId"));
             return new ModelAndView(model, "herolist.hbs");
         }, new HandlebarsTemplateEngine());
